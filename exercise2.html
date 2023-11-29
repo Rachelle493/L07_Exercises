@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 2</title>
+
+    <style>
+        .user-data {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="userInputForm">
+        <!-- Two text fields - Name and Email -->
+        <input type="text" id="nameInput" name="name" placeholder="Name"><br><br>
+        <input type="email" id="emailInput" name="email" placeholder="Email"><br><br>
+        <!-- Two radio buttons for Gender - Male and Female -->
+        <div class="gender-radio">
+            <input type="radio" id="maleRadio" name="gender" value="male" required>
+            <label for="maleRadio">Male</label>
+
+            <input type="radio" id="femaleRadio" name="gender" value="female" required>
+            <label for="femaleRadio">Female</label><br><br>
+        </div>
+        <!-- Submit button -->
+        <button type="submit" class="submit-btn">Submit</button><br><br>
+    </form>
+
+    <!-- Display form data -->
+    <div class="user-data"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // JavaScript to get and display form data
+        $(document).ready(function() {
+            $('#userInputForm').submit(function(event) {
+                event.preventDefault(); // Prevent page reload
+
+                var name = $('#nameInput').val();
+                var email = $('#emailInput').val();
+                var gender = $('input[name="gender"]:checked').val();
+
+                var userData = '<h2>User Data</h2><p>Name: ' + name + '</p><p>Email: ' + email + '</p><p>Gender: ' + gender + '</p>';
+
+                $('.user-data').html(userData); // Add user data to the '.user-data' element
+                $('.user-data').fadeIn(1000); // Fade in the user data
+
+                // Slide up user data on mouseover
+                $('.user-data').on('mouseover', function() {
+                    $(this).slideUp(500);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

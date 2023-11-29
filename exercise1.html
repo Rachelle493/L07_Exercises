@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1</title>
+</head>
+
+<body>
+    <form action="#">
+        <!-- Two text fields - Name and Email -->
+        <input type="text" id="name" name="name" placeholder="Name" value=""><br><br>
+        <input type="email" id="email" name="email" placeholder="Email" value=""><br><br>
+        <!-- Two radio buttons for Gender - Male and Female -->
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br><br>
+        <!-- Submit button -->
+        <button type="submit">Submit</button><br><br>
+    </form>
+
+    <!-- Display form data -->
+    <div id="user-data"></div>
+
+    <script>
+        // JavaScript to get and display form data
+        const form = document.querySelector('form');
+        const userDataDiv = document.getElementById('user-data');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            const userData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                gender: formData.get('gender')
+            };
+
+            userDataDiv.innerHTML = `
+                ${userData.name}<br>
+                ${userData.email}<br>
+                ${userData.gender}<br>
+            `;
+        });
+    </script>
+</body>
+
+</html>
